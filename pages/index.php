@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content=" ie=edge">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="icon" type="image/png" href="../assets/images/logo.png">
     <title>Fent Games</title>
@@ -28,7 +27,7 @@
             <h2 class="subtitle"> the best games</h2>
             <br><br><br>
             
-            <button class="playBtn">Play Now</button>
+            <button class="playBtn" onclick="window.location.href = 'questions.php';">Play Now</button>
             <br><br><br>
             <h2 class="subtitle">Unleash</h2>
             <h2 class="subtitle">Your Potential</h2>
