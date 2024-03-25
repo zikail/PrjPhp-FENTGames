@@ -1,0 +1,77 @@
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0 ;
+    background: transparent;
+    height: auto; 
+    width: 100vw; 
+    padding-top: 40px;
+    color: #FFF5EE;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer -content h3{ 
+    font-size: 1.5rem; 
+    text-transform: capitalize;
+    line-height: 3rem;
+}
+
+.footer-content p{ 
+    max-width: 50rem;
+    line-height: 28px;
+    font-size: 10px;
+}
+
+.footer-bottom{ 
+    background: blur;
+    backdrop-filter: blur(10px);
+    width: 100vw;
+    padding: 20px 0; 
+    text-align: center;
+}
+
+.footer-bottom p{
+    font-size: 14px; 
+    word-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.footer-bottom span{
+    text-transform: uppercase;
+    opacity: .4; 
+    font-weight: 200;
+}
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: .5rem 0 .5rem 0;
+}
+
+.socials li{
+    margin: 0 12px;
+}
+
+.socials a{
+    margin-left: 15px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.socials a ion-icon{
+    font-size: 1.1rem;
+    transition: color .4s ease;
+}
+
+.socials a:hover ion-icon{ 
+    color: rgb(4, 0, 255);
+}

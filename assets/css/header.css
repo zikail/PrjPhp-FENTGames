@@ -1,0 +1,64 @@
+header{
+    backdrop-filter: blur(10px);
+    position: transparent;
+    background: blur;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+.top{
+    background: blur;
+    backdrop-filter: blur(10px);
+}
+
+.logo{
+    font-size: 2em; 
+    user-select: none;
+}
+.navigation a { 
+    position: relative; 
+    font-size: 1.1em;
+    text-decoration: none; 
+    margin-left: 50px;
+}
+
+.navigation a::after { 
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 110%; 
+    height: 3px;
+    background: #942996; 
+    border-radius: 30px;
+    transform: scaleX(0);
+    transition: transform .3s;
+}
+
+.navigation a:hover::after{
+    transform: scaleX(1);
+}
+
+.navigation .btnSignUp {
+    width: 130px;
+    height: 50px;
+    background: transparent; 
+    border: 2px solid #153d87;
+    outline: none;
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-size: 1.1em;
+    color: #153d87;
+    margin-left: 40px;
+    transition: .3s;
+}
+
+.navigation .btnSignUp:hover{
+    background: #942996; 
+    color: #fbf5fa;
+}

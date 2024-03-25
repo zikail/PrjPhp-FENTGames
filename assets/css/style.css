@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    color: #153d87;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;
+    background: url('../images/background1.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+.container {
+    width: 100%;
+    margin-top: 50px;
+    top: -50px;
+    display: flex; /* Use flexbox to arrange sections */
+    height: 100vh;
+     /* Full height of the viewport */
+}
+
+.section {/* Width of each section */
+    position: relative; /* Positioning context for the pseudo elements */
+    flex: 1;/* Border for visualization */ /* Optional padding */
+    text-shadow: 
+            -1px -1px 0 #000,  
+             1px -1px 0 #000,
+            -1px  1px 0 #000,
+             1px  1px 0 #000; 
+}
+.section img {
+    left: 50px;
+    width: 70%;
+    height : 80%;
+    display: block;
+}
+
+.char img {
+    left: 100px;
+    display: block;
+}
+.descrPr{
+    position: relative;
+    width: 100px;
+    text-decoration:underline;
+    text-align: left ;
+    color: #162938;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.intro .title {
+    margin-top: 0;
+    color:#FFF5EE;
+    font-size: 35px;
+    text-align: center;
+    transition: .3s;
+}
+.intro .subtitle {
+    color:#FFF5EE;
+    font-size: 25px;
+    text-align: center;
+    transition: .5s;
+}
+
+.intro .title:hover{
+    font-size: 50px;
+    color: rgb(167, 48, 175);
+}
+
+.intro .subtitle:hover{
+    font-size: 55px;
+    color: rgb(167, 48, 175);
+}
+.char {/* Fixed positioning */
+    top: 150px; /* Position from the left side of the viewport */
+    width: 200px;
+    bottom: -150px;/* Background color */
+    /* Optionally, you can add other styling properties */
+}
+
+.intro .subtitle:hover {
+    font-size: 55px;
+    color: rgb(167, 48, 175);
+}
+.copywrite {
+    top: 50px;
+}
+.intro {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: .5s;
+    
+}
+
+.playBtn {
+    position: relative;
+    font-size: 25px;
+    text-shadow: 
+            -1px -1px 0 #000,  
+             1px -1px 0 #000,
+            -1px  1px 0 #000,
+             1px  1px 0 #000; 
+    font-family: 'Poppins', sans-serif;
+    width: 150px;
+    height: 150px;
+    background: #f7f3fa;
+    color:#810ba9;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .5s;
+}
+.playBtn:hover {
+    background: #810ba9;
+    color: #faf4f4;
+    transform: scale(1.5);
+}
+.playbtn:hover::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: rgba(169, 7, 158, 0.5);
+    border-radius: 50%;
+    z-index: -1;
+}
+
