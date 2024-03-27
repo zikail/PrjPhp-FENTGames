@@ -15,8 +15,8 @@
 
     echo "<h2>Game over!<br></h2>" . "<br>";
     echo "Your score was: $scoreCounter" . "<br>";
-    echo "<button onclick=\"window.location.href = 'questions.php';\">Restart</button>";
-    $scoreCounter = 0;
+    $_SESSION["scoreCounter"] = 0;
+    echo "<button onclick=\"window.location.href = 'question1.php';\">Restart</button>";
     ?>
 </body>
 </html>
