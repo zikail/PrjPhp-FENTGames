@@ -1,0 +1,51 @@
+/* CSS for question design */
+
+.question {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.question h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.question p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.question .options {
+    margin-top: 10px;
+}
+
+.question .options label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.question .options input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.question .options button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.question .options button:hover {
+    background-color: #0056b3;
+}
