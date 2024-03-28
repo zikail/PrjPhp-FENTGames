@@ -27,7 +27,7 @@
             <h2 class="subtitle"> the best games</h2>
             <br><br><br>
             
-            <button class="playBtn" onclick="window.location.href = 'questions.php';">Play Now</button>
+            <button class="playBtn" onclick="window.location.href = 'question1.php';">Play Now</button>
             <br><br><br>
             <h2 class="subtitle">Unleash</h2>
             <h2 class="subtitle">Your Potential</h2>

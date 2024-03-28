@@ -13,6 +13,8 @@
 <body>
     <div class="question">
         <?php
+        $message = "";
+
         session_start();
 
         // Set the lives and score counter
@@ -48,7 +50,7 @@
             } 
             else 
             {
-                echo "<p>Sorry, that's not correct. Try again.</p>";
+                $message = "<p style=\"color: red\">Sorry, that's not correct. Try again.</p>";
                 $_SESSION["livesCounter"]--;
                 unset($_SESSION["letters"]); // Unset the letters in the session
                 if ($_SESSION["livesCounter"] <= 0) {
@@ -73,17 +75,24 @@
         } else {
             $letters = $_SESSION["letters"];
         }
-
+        echo "<h1 class=\"rainbow\">Question 1</h1><br>";
         echo "<h2>Letters: " . implode(" ", $letters) . "</h2>";
 
         echo "<p>Your score: $scoreCounter</p>";
         echo "<p>Lives left: " . $_SESSION["livesCounter"] . "</p>";
         ?>
+        
         <div class="options">
             <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
                 <label for="answer">Your Answer:</label>
                 <input type="text" id="answer" name="answer">
                 <button>Submit</button>
+                <br><br>
+
+                <?php
+                echo $message;
+                ?>
+            
             </form>
         </div>
     </div>
