@@ -1,17 +1,49 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <script>
+            function passwordStrength(str) {
+                if (str.length == 0) 
+                {
+                    document.getElementById("passwordSuggestion").innerHTML = "";
+                    return;
+                } 
+                else 
+                {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200)
+                        {
+                            document.getElementById("passwordSuggestion").innerHTML = this.responseText;
+                        }
+                    };
+                    xmlhttp.open("GET", "passwordAJAX.php?q=" + str, true);
+                    xmlhttp.send();
+                }
+            }
+
+        </script>
+    </head>
     <body>
         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>">
             <fieldset>
                 <legend>Sign up</legend>
                 </br>
-                <label>Enter username: </label>
+                <label for="uname">Enter username: </label>
                 <input type="text" required name="usernameInput">
-                <label>Enter password: </label>
-                <input type="text" required name="passwordInput">
+
+                <br><br>
+
+                <label for="pword">Enter password: </label>
+                <input type="text" required name="passwordInput" onkeyup="passwordStrength(this.value)">
+
                 <br>
-                <input type="submit" name="signUpSumbit" value="SIGNUP">
+
+                <p><span id="passwordSuggestion"></span></p>
+
+                <br>
+
+                <input id="sub" type="submit" name="signUpSumbit" value="SIGNUP">
             </fieldset>
             
         </form>
@@ -20,59 +52,10 @@
         if (isset($_POST["signUpSumbit"]))
         {
             $username = $_POST["usernameInput"];
-            $password = $_POST["passwordInput"];
-
-            /*password security levels:
-            Weak: no numbers, no special char (!#@$%&?¡¿), less than 7 char
-            Intermidiate: 2 out of the 3 conditions are met
-            Strong the 3 conditions are met
+            $password = $_POST["passwordInput"];   
             
-            For the AJAX, this part of the code should go outside the isset*/ 
-
-            $anyNumbers = preg_match("/\d/", $password); //There are any numbers in the password
-            $SpecialChars = preg_match("/\W/", $password); //There are any special chars
-            $lessThanSevenChars = count(str_split($password)) < 7; //Less than 7 chars
-
-            $numberOfOffenses = 0;
-
-            if (!$anyNumbers)
-            {
-                //echo 'There are no numbers in the password';
-                $numberOfOffenses++;
-            }
-
-            if (!$SpecialChars) {
-                //echo 'There are no special characters in the password';
-                $numberOfOffenses++;
-            }
-
-            if ($lessThanSevenChars) 
-            {
-                //echo 'Password length is too short. (should be more than 7 chars)';
-                $numberOfOffenses++;
-            }
-
-            //This part will be the AJAX shi
-            switch($numberOfOffenses){
-                case 0:
-                    echo 'Strong password';
-                    //Include the user in the database
-                    //go back to login
-                    break;
-                case 1:
-                    echo 'Intermidiate password'; 
-                    break;   
-                case 2:
-                    echo 'Intermidiate password';
-                    break;
-                case 3:
-                    echo 'Weak password, comply the conditions';
-                    break;
-            }
-
+            //save it in the db
         }
-
-
         ?>
     </body>
 </html>

@@ -23,6 +23,9 @@ by Leonardo Dueñas-->
         <?php
             if (isset($_POST['sbmt']))
             {
+
+                //This part will be changed for the db
+
                 $users_and_passwords = array(
                     "username1"=>"PASSWORD",
                     "username2"=>"PASSWORD1",
