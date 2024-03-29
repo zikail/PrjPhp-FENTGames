@@ -3,9 +3,11 @@
     <head>
         <script>
             function passwordStrength(str) {
+                const submitButton = document.querySelector("#sub");
                 if (str.length == 0) 
                 {
                     document.getElementById("passwordSuggestion").innerHTML = "";
+                    submitButton.disabled = true;
                     return;
                 } 
                 else 
@@ -15,6 +17,9 @@
                         if (this.readyState == 4 && this.status == 200)
                         {
                             document.getElementById("passwordSuggestion").innerHTML = this.responseText;
+                            if(this.responseText == "Strong password"){
+                                submitButton.disabled = false;
+                            }
                         }
                     };
                     xmlhttp.open("GET", "passwordAJAX.php?q=" + str, true);
@@ -43,7 +48,7 @@
 
                 <br>
 
-                <input id="sub" type="submit" name="signUpSumbit" value="SIGNUP">
+                <input id="sub" type="submit" name="signUpSumbit" value="SIGNUP" disabled>
             </fieldset>
             
         </form>
