@@ -20,33 +20,47 @@ by Leonardo Dueñas-->
             <a href="*">Don't remember your password?</a>
         </form>
 
+
         <?php
-            if (isset($_POST['sbmt']))
+            if (isset($_POST['loginSubmit']))
             {
+                // Database connection
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "fentGames";
 
-                //This part will be changed for the db
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
 
-                $users_and_passwords = array(
-                    "username1"=>"PASSWORD",
-                    "username2"=>"PASSWORD1",
-                    "username3"=>"PASSWORD2",
-                );
-                
-                $username = trim($_POST['usernameInput']);
-                $password = trim($_POST['passwordInput']);
-
-                if (!key_exists($username, $users_and_passwords)) { //Check is the username exist or not
-                    echo '<p>Incorrect username<!p>';
-                    return;
-                } 
-
-                if (!($users_and_passwords[$username] === $password)){ //Check if the password corresponds to the username
-                    echo '<p>Incorrect password<!p>';
-                    return;
+                // Check connection
+                if ($conn->connect_error) 
+                {
+                    die("Connection failed: " . $conn->connect_error);
                 }
 
-                echo '<p>Login succesful!</p>';
+                $username = $_POST['usernameInput'];
+                $password = $_POST['passwordInput'];
+
+                // SQL query to check if username and password match
+                $sql = "SELECT * FROM authenticator WHERE userName='$username' AND passCode='$password'";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows == 1) 
+                {
+                    // Start session and redirect to dashboard or home page
+                    session_start();
+                    $_SESSION['username'] = $username;
+                    header("Location: dashboard.php");
+                    exit();
+                } 
+                else 
+                {
+                    echo '<p>Incorrect username or password</p>';
+                }
+
+                $conn->close();
             }
-        ?>
+    ?>
     </body>
 </html>

@@ -56,7 +56,7 @@
                 $servername = "localhost";
                 $username = "root";
                 $password = "";
-                $dbname = "FentGamesDB";
+                $dbname = "fentGames";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
