@@ -2,7 +2,8 @@
 <html>
     <head>
         <script>
-            function passwordStrength(str) {
+            function passwordStrength(str)
+             {
                 if (str.length == 0) 
                 {
                     document.getElementById("passwordSuggestion").innerHTML = "";
@@ -49,13 +50,48 @@
         </form>
 
         <?php
-        if (isset($_POST["signUpSumbit"]))
-        {
-            $username = $_POST["usernameInput"];
-            $password = $_POST["passwordInput"];   
-            
-            //save it in the db
-        }
-        ?>
+            if ($_SERVER["REQUEST_METHOD"] == "POST") 
+            {
+                // Database connection
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "FentGamesDB";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Check connection
+                if ($conn->connect_error) 
+                {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Get username and password from form
+                $username = $_POST['usernameInput'];
+                $password = $_POST['passwordInput'];
+
+                // SQL query to insert username and password into the authenticator table
+                $sql = "INSERT INTO authenticator (passCode, registrationOrder) 
+                        SELECT '$password', registrationOrder 
+                        FROM player 
+                        WHERE userName='$username'";
+
+                if ($conn->query($sql) === TRUE) 
+                {
+                    // Start session and redirect to dashboard or home page
+                    session_start();
+                    $_SESSION['username'] = $username;
+                    header("Location: dashboard.php");
+                    exit();
+                } 
+                else 
+                {
+                    $error = "Error: " . $sql . "<br>" . $conn->error;
+                }
+
+                $conn->close();
+            }
+    ?>
     </body>
 </html>
