@@ -40,19 +40,19 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") 
         {
             $input = $_POST["answer"];
-            $inputLetters = str_split(str_replace(' ', '', $input));
+            $inputNums = array_map('intval', explode(' ', $input));
         
-            // Sort the letters in descending order for checking the user's input
-            $letters = $_SESSION["letters_q2"];
-            $sortedLetters = $letters;
-            rsort($sortedLetters);
+            // Sort the numbers in ascending order for checking the user's input
+            $nums = $_SESSION["nums_q4"];
+            $sortedNums = $nums;
+            rsort($sortedNums);
         
             // Check if the user's input is correct, if it is, increment the score counter
-            if ($inputLetters === $sortedLetters) 
+            if ($inputNums === $sortedNums) 
             {
                 $scoreCounter+= 10;
                 $_SESSION["scoreCounter"] = $scoreCounter;
-                header("Location: question3.php");
+                echo "<p style=\"color: green\">Correct!</p>";
             } 
             else 
             {
@@ -63,7 +63,7 @@
                     $scoreCounter -= 2;
                 }
                 $_SESSION["scoreCounter"] = $scoreCounter;
-                unset($_SESSION["letters_q2"]); // Unset the letters in the session
+                unset($_SESSION["nums_q4"]); // Unset the letters in the session
                 if ($_SESSION["livesCounter"] <= 0) 
                 {
                     header("Location: gameOverFail.php");
@@ -72,23 +72,19 @@
             }
         }
 
-        // Generate 6 unique random letters for question 2
-        if (!isset($_SESSION["letters_q2"])) {
-            $letters_q2 = range('a', 'z');
-            shuffle($letters_q2);
-            $letters_q2 = array_slice($letters_q2, 0, 6);
+        // Generate 6 unique random numbers for question 4
+        if (!isset($_SESSION["nums_q4"])) {
+            $nums_q4 = range(1, 100);
+            shuffle($nums_q4);
+            $nums_q4 = array_slice($nums_q4, 0, 6);
 
-            // Randomly decide if the letters should be uppercase or lowercase
-            if (rand(0, 1) == 0) {
-                $letters_q2 = array_map('strtoupper', $letters_q2);
-            }
 
-            $_SESSION["letters_q2"] = $letters_q2;
+            $_SESSION["nums_q4"] = $nums_q4;
         }
 
-        echo "<h1 class=\"rainbow\">Question 2</h1><br>";
-        echo "<u><h2>Sort the letters in descending order!</h2></u>";
-        echo "<h2>Letters: " . implode(" ", $_SESSION["letters_q2"]) . "</h2>";
+        echo "<h1 class=\"rainbow\">Question 4</h1><br>";
+        echo "<u><h2>Sort the numbers in descending order!</h2></u>";
+        echo "<h2>Numbers: " . implode(", ", $_SESSION["nums_q4"]) . "</h2>";
 
         echo "<p>Your score: $scoreCounter</p>";
         echo "<p>Lives left: " . $_SESSION["livesCounter"] . "</p>";

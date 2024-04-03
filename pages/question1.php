@@ -85,6 +85,7 @@
             $letters = $_SESSION["letters"];
         }
         echo "<h1 class=\"rainbow\">Question 1</h1><br>";
+        echo "<u><h2>Sort the letters in ascending order!</h2></u>";
         echo "<h2>Letters: " . implode(" ", $letters) . "</h2>";
 
         echo "<p>Your score: $scoreCounter</p>";
