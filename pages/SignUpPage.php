@@ -16,6 +16,11 @@
                         if (this.readyState == 4 && this.status == 200)
                         {
                             document.getElementById("passwordSuggestion").innerHTML = this.responseText;
+                            if (this.responseText == "Strong password"){
+                                document.getElementById("sub").disabled = false;
+                            } else {
+                                document.getElementById("sub").disabled = true;
+                            }
                         }
                     };
                     xmlhttp.open("GET", "passwordAJAX.php?q=" + str, true);
@@ -44,7 +49,7 @@
 
                 <br>
 
-                <input id="sub" type="submit" name="signUpSumbit" value="SIGNUP">
+                <input id="sub" type="submit" name="signUpSumbit" value="SIGNUP" disabled>
             </fieldset>
             
         </form>
