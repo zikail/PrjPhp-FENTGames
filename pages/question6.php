@@ -18,21 +18,15 @@
         $message = "";
 
         // Set the lives and score counter
-        if (!isset($_SESSION["livesCounter"])) 
-        {
+        if (!isset($_SESSION["livesCounter"])) {
             $_SESSION["livesCounter"] = 6;
-        } 
-        else 
-        {
+        } else {
             $livesCounter = $_SESSION["livesCounter"];
         }
 
-        if (!isset($_SESSION["scoreCounter"])) 
-        {
+        if (!isset($_SESSION["scoreCounter"])) {
             $_SESSION["scoreCounter"] = $scoreCounter = 0;
-        } 
-        else 
-        {
+        } else {
             $scoreCounter = $_SESSION["scoreCounter"];
         }
 
@@ -41,29 +35,29 @@
         {
             $input = $_POST["answer"];
             $inputNums = array_map('intval', explode(' ', $input));
-        
-            // Sort the numbers in ascending order for checking the user's input
-            $nums = $_SESSION["nums_q4"];
-            $sortedNums = $nums;
-            rsort($sortedNums);
-        
+
+            // Find the smallest and largest nums
+            $nums = $_SESSION["nums_q6"];
+            $smallestNum = min($nums);
+            $largestNum = max($nums);
+
             // Check if the user's input is correct, if it is, increment the score counter
-            if ($inputNums === $sortedNums) 
+            if ($inputNums[0] === $smallestNum && $inputNums[1] === $largestNum) 
             {
-                $scoreCounter+= 10;
+                $scoreCounter += 10;
                 $_SESSION["scoreCounter"] = $scoreCounter;
-                header("Location: question5.php");
+                header("Location: gameWin.php");
+
             } 
             else 
             {
                 $message = "<p style=\"color: red\">Sorry, that's not correct. Try again.</p>";
                 $_SESSION["livesCounter"]--;
-                if ($scoreCounter > 0) 
-                {
+                if ($scoreCounter > 0) {
                     $scoreCounter -= 2;
                 }
                 $_SESSION["scoreCounter"] = $scoreCounter;
-                unset($_SESSION["nums_q4"]); // Unset the letters in the session
+                unset($_SESSION["nums_q6"]); // Unset the numbers in the session
                 if ($_SESSION["livesCounter"] <= 0) 
                 {
                     header("Location: gameOverFail.php");
@@ -72,19 +66,19 @@
             }
         }
 
-        // Generate 6 unique random numbers for question 4
-        if (!isset($_SESSION["nums_q4"])) {
-            $nums_q4 = range(1, 100);
-            shuffle($nums_q4);
-            $nums_q4 = array_slice($nums_q4, 0, 6);
+        // Generate 6 unique random letters for question 2
+        if (!isset($_SESSION["nums_q6"])) 
+        {
+            $nums_q6 = range(1, 100);
+            shuffle($nums_q6);
+            $nums_q6 = array_slice($nums_q6, 0, 6);
 
-
-            $_SESSION["nums_q4"] = $nums_q4;
+            $_SESSION["nums_q6"] = $nums_q6;
         }
 
-        echo "<h1 class=\"rainbow\">Question 4</h1><br>";
-        echo "<u><h2>Sort the numbers in descending order!</h2></u>";
-        echo "<h2>Numbers: " . implode(", ", $_SESSION["nums_q4"]) . "</h2>";
+        echo "<h1 class=\"rainbow\">Question 6</h1><br>";
+        echo "<u><h2>Identify the smallest and the largest number in the set of 6 numbers</h2></u>";
+        echo "<h2>Numbers: " . implode(", ", $_SESSION["nums_q6"]) . "</h2>";
 
         echo "<p>Your score: $scoreCounter</p>";
         echo "<p>Lives left: " . $_SESSION["livesCounter"] . "</p>";
@@ -103,8 +97,7 @@
             <button onclick="endGame()">End Game</button>
             <script>
                 function endGame() {
-                    if (confirm("Are you sure you want to end the game? Your progress will be lost!")) 
-                    {
+                    if (confirm("Are you sure you want to end the game? Your progress will be lost!")) {
                         window.location.href = "gameOverFail.php";
                         exit();
                     }
