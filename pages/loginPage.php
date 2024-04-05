@@ -22,16 +22,16 @@ by Leonardo Dueñas-->
 
 
         <?php
-            if (isset($_POST['loginSubmit']))
+            if ($_SERVER["REQUEST_METHOD"] == "POST") 
             {
                 // Database connection
                 $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "fentGames";
+                $usernameDB = "root";
+                $passwordDB = "";
+                $dbname = "fentgames";
 
                 // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
+                $conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname);
 
                 // Check connection
                 if ($conn->connect_error) 
@@ -43,7 +43,7 @@ by Leonardo Dueñas-->
                 $password = $_POST['passwordInput'];
 
                 // SQL query to check if username and password match
-                $sql = "SELECT * FROM authenticator WHERE userName='$username' AND passCode='$password'";
+                $sql = "SELECT * FROM player p JOIN authenticator a ON p.registrationOrder = a.registrationOrder WHERE p.userName='$username' AND a.passCode='$password'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows == 1) 
@@ -51,7 +51,7 @@ by Leonardo Dueñas-->
                     // Start session and redirect to dashboard or home page
                     session_start();
                     $_SESSION['username'] = $username;
-                    header("Location: dashboard.php");
+                    header("Location: index.php");
                     exit();
                 } 
                 else 
