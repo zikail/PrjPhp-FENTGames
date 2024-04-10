@@ -8,8 +8,17 @@
     <title>Fent Games</title>
 </head>
 <body>
-    <?php include('../includes/header.php');?>
-
+    <?php 
+    session_start();
+    if (isset($_SESSION["username"])) 
+    {
+        include('../includes/signedinheader.php');
+    } 
+    else 
+    {
+        include('../includes/header.php');
+    }
+    ?>
     <div class="container">
         <div class="char section">
         <br>
@@ -27,7 +36,7 @@
             <h2 class="subtitle"> the best games</h2>
             <br><br><br>
             
-            <button class="playBtn" onclick="window.location.href = 'question1.php';">Play Now</button>
+            <button id="playBtn" class="playBtn" onclick="window.location.href = 'question1.php';">Play Now</button>
             <br><br><br>
             <h2 class="subtitle">Unleash</h2>
             <h2 class="subtitle">Your Potential</h2>
