@@ -1,25 +1,45 @@
 <!--Login page
 by Leonardo Dueñas-->
 <!DOCTYPE html>
-<html>
-    <head></head>
+<html lang="EN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../assets/css/login.css">
+
+        <link rel="icon" type="image/png" href="../assets/images/logo.png">
+        <title>Log In</title>
+    </head>
+
     <body>
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>">
-            <div>
-                <label>Username:
-                <input type="text" placeholder="username" name="usernameInput" required></label>
-                </br>
-                <label>Password:
-                <input type="password" placeholder="********" name="passwordInput" required></label>
-                </br></br>
+        <div class="outer-container">
+        
+            <div class="loginContainer">
+                <h1>Log In</h1>
+                <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>">
+                    <div>
+                        <label>Username:
+                        <input type="text" placeholder="username" name="usernameInput" required></label>
+                        </br></br>
+                        <label>Password:
+                        <input type="password" placeholder="********" name="passwordInput" required></label>
+                        </br></br>
+                    </div>
+
+                    <div class="login-buttons">
+                    <input type="submit" name="sbmt" value="SEND">
+
+                    <a href="SignUpPage.php"><button type="button">Sign Up</button></a>
+
+                    <a href="*">Don't remember your password?</a>
+                    </div>
+                </form>
             </div>
-            <input type="submit" name="sbmt" value="SEND">
 
-            <a href="SignUpPage.php"><button type="button">Sign Up</button></a>
-
-            <a href="*">Don't remember your password?</a>
-        </form>
-
+            <div class="back-button">
+                    <a href="index.php"><button type="button">Go Back</button></a>
+            </div>
+        </div>
 
         <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") 

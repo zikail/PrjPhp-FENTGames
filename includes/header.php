@@ -13,7 +13,7 @@
         <nav class="navigation">
             <a href="../pages/index.php">Home</a> 
             <a href="../about_page/index_about_page.html">About</a>  
-            <button class="btnSignUp" onclick="window.location.href = 'loginPage.php';">Sign In</button>
+            <button class="btnSignUp" onclick="window.location.href = 'loginPage.php';">Log In</button>
         </nav>
     
     

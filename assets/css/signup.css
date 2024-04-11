@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    color: #153d87;
+}
+
+body 
+{
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;
+    background: url('../images/background1.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+
+.signUpBox
+{
+    width: 400px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.8);
+    background: #fff;
+    padding: 20 px;
+    margin: 8% auto 0;
+    text-align: center;
+    opacity: 0.9;
+}
+
+input[type="text"]
+{
+    background-color: rgb(244, 240, 255);
+}
+
+input[type="text"]:hover 
+{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+input[type=text]:focus 
+{
+    border: 3px solid #555;
+    background-color: #fff;
+}
+
+.passConditions
+{
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#passwordSuggestion
+{
+    margin: 20px;
+}
+
+#sub
+{
+    margin: 15px;
+    padding: 5px;
+    border-radius: 10%;
+}
+
+#sub:hover
+{
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.outer-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.back-button
+{
+    margin-top: 20px;
+}
