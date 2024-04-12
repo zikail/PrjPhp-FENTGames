@@ -91,7 +91,8 @@
         </div>
 
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") 
+        {
             // Database connection
             $servername = "localhost";
             $usernameDB = "root";
@@ -111,36 +112,48 @@
             $username = $_POST['usernameInput'];
             $password = $_POST['passwordInput'];
 
-            // SQL query to insert new user into the player table
-            $sql = "INSERT INTO player (fName, lName, userName, registrationTime) 
-            VALUES ('', '', '$username', NOW())";
+            // SQL query to check if username already exists
+            $sql = "SELECT * FROM player WHERE userName = '$username'";
+            $result = $conn->query($sql);
 
-            if ($conn->query($sql) === TRUE) 
+            if ($result->num_rows > 0) 
             {
-                // Get the registrationOrder of the newly inserted user
-                $registrationOrder = $conn->insert_id;
-
-                // SQL query to insert password into the authenticator table
-                $sql = "INSERT INTO authenticator (passCode, registrationOrder) 
-                VALUES ('$password', $registrationOrder)";
+                echo "<br>";
+                echo "<p style=\"text-align:center;\">Username already exists. Please try again with a different username.</p>" ;
+            }
+            else 
+            {
+                // SQL query to insert new user into the player table
+                $sql = "INSERT INTO player (fName, lName, userName, registrationTime) 
+                VALUES ('', '', '$username', NOW())";
 
                 if ($conn->query($sql) === TRUE) 
                 {
-                    // Start session and redirect to dashboard or home page
-                    session_start();
-                    $_SESSION['username'] = $username;
-                    echo "New record created successfully";
-                    echo "<button onclick=\"window.location.href = 'index.php';\">Go to home page</button>";
-                    exit();
+                    // Get the registrationOrder of the newly inserted user
+                    $registrationOrder = $conn->insert_id;
+
+                    // SQL query to insert password into the authenticator table
+                    $sql = "INSERT INTO authenticator (passCode, registrationOrder) 
+                    VALUES ('$password', $registrationOrder)";
+
+                    if ($conn->query($sql) === TRUE) 
+                    {
+                        // Start session and redirect to dashboard or home page
+                        session_start();
+                        $_SESSION['username'] = $username;
+                        echo "New record created successfully";
+                        echo "<button onclick=\"window.location.href = 'index.php';\">Go to home page</button>";
+                        exit();
+                    } 
+                    else 
+                    {
+                        $error = "Error: " . $sql . "<br>" . $conn->error;
+                    }
                 } 
                 else 
                 {
                     $error = "Error: " . $sql . "<br>" . $conn->error;
                 }
-            } 
-            else 
-            {
-                $error = "Error: " . $sql . "<br>" . $conn->error;
             }
 
             $conn->close();
