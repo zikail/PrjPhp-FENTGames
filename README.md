@@ -4,7 +4,7 @@ We hope you like our project!
 
 ### Created By:
 
-Abdelraouf, Leonardo, Ariel and Shehreyaar 
+Abdelraouf, Leonardo, Ariel and Shehreyaar/ 
 
 
 
