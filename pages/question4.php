@@ -42,7 +42,7 @@
             $input = $_POST["answer"];
             $inputNums = array_map('intval', explode(' ', $input));
         
-            // Sort the numbers in ascending order for checking the user's input
+            // Sort the numbers in descending order for checking the user's input
             $nums = $_SESSION["nums_q4"];
             $sortedNums = $nums;
             rsort($sortedNums);
@@ -63,7 +63,7 @@
                     $scoreCounter -= 2;
                 }
                 $_SESSION["scoreCounter"] = $scoreCounter;
-                unset($_SESSION["nums_q4"]); // Unset the letters in the session
+                unset($_SESSION["nums_q4"]); // Unset the numbers in the session
                 if ($_SESSION["livesCounter"] <= 0) 
                 {
                     header("Location: gameOverFail.php");
@@ -101,12 +101,20 @@
                 ?>
             </form>
             <button onclick="endGame()">End Game</button>
+            <button onclick="signOut()">Sign Out</button>
             <script>
                 function endGame() {
                     if (confirm("Are you sure you want to end the game? Your progress will be lost!")) 
                     {
                         window.location.href = "gameOverFail.php";
                         exit();
+                    }
+                }
+                function signOut() 
+                {
+                    if (confirm("Are you sure you want to sign out?")) 
+                    {
+                        window.location.href = "../includes/logout.php";
                     }
                 }
             </script>

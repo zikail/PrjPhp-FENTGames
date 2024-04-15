@@ -66,7 +66,7 @@
             }
         }
 
-        // Generate 6 unique random letters for question 2
+        // Generate 6 unique random numbers for question 6
         if (!isset($_SESSION["nums_q6"])) 
         {
             $nums_q6 = range(1, 100);
@@ -96,8 +96,10 @@
             </form>
             <button onclick="endGame()">End Game</button>
             <script>
-                function endGame() {
-                    if (confirm("Are you sure you want to end the game? Your progress will be lost!")) {
+                function endGame() 
+                {
+                    if (confirm("Are you sure you want to end the game? Your progress will be lost!")) 
+                    {
                         window.location.href = "gameOverFail.php";
                         exit();
                     }

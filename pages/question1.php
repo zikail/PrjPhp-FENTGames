@@ -97,19 +97,27 @@
                 <label for="answer">Your Answer:</label>
                 <input type="text" id="answer" name="answer">
                 <button>Submit</button>
-
-
                 <?php
+                echo "<br><br>Instructions: Answer structure must look like A A A A A A (Case-sensitive). <br>";
                 echo "<br><br>" . $message;
                 ?>
             
             </form>
             <button onclick="endGame()">End Game</button>
+            <button onclick="signOut()">Sign Out</button>
             <script>
-                function endGame() {
+                function endGame() 
+                {
                     if (confirm("Are you sure you want to end the game? Your progress will be lost!")) 
                     {
                         window.location.href = "gameOverFail.php";
+                    }
+                }
+                function signOut() 
+                {
+                    if (confirm("Are you sure you want to sign out?")) 
+                    {
+                        window.location.href = "../includes/logout.php";
                     }
                 }
             </script>

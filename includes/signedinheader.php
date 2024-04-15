@@ -11,7 +11,7 @@
         <h2 class="logo">TEAM 3</h2> 
         <nav class="navigation">
             <a href="../pages/index.php">Home</a> 
-            <a href="../about_page/index_about_page.html">About</a>  
+            <a href="../pages/about.php">About</a>  
             <button class="btnSignUp" onclick="window.location.href = '../includes/logout.php';">Sign Out</button>&nbsp;&nbsp;
             Welcome, <?php echo $_SESSION["username"]; ?>
         </nav>

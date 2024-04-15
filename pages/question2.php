@@ -105,12 +105,20 @@
                 ?>
             </form>
             <button onclick="endGame()">End Game</button>
+            <button onclick="signOut()">Sign Out</button>
             <script>
                 function endGame() {
                     if (confirm("Are you sure you want to end the game? Your progress will be lost!")) 
                     {
                         window.location.href = "gameOverFail.php";
                         exit();
+                    }
+                }
+                function signOut() 
+                {
+                    if (confirm("Are you sure you want to sign out?")) 
+                    {
+                        window.location.href = "../includes/logout.php";
                     }
                 }
             </script>
