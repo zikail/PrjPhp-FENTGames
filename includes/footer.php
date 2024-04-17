@@ -13,13 +13,13 @@
             <br>
             <p>Follow us on</p>
             <div class="socials">
-                <a href="https://www.facebook.com/"><img src="../assets/images/facebook.png" alt="facebook"></a>
+                <a href="https://www.facebook.com/" style="color:black;"><img src="https://cdn-icons-png.flaticon.com/256/124/124010.png" alt="facebook" width="16px" height="16px"> Facebook</a>
                 <br>
                 <br>
-                <a href="https://www.twitter.com/"><img src="../assets/images/twitter.png" alt="twitter"></a>
+                <a href="https://www.instagram.com/" style="color:black;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="instagram" width="16px" height="16px"> Instagram</a>
                 <br>
                 <br>
-                <a href="https://www.instagram.com/"><img src="../assets/images/instagram.png" alt="instagram"></a>
+                <a href="https://www.twitter.com/" style="color:black;"><img src="https://static.dezeen.com/uploads/2023/07/x-logo-twitter-elon-musk_dezeen_2364_col_0.jpg" alt="instagram" width="16px" height="16px"> Twitter</a>
         </div>
     </footer>
 </body>
