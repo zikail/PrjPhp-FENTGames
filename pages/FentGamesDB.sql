@@ -18,9 +18,11 @@ CREATE TABLE IF NOT EXISTS authenticator(
     FOREIGN KEY (registrationOrder) REFERENCES player(registrationOrder)
 )CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci; 
 
-CREATE TABLE IF NOT EXISTS score( 
+CREATE TABLE IF NOT EXISTS score
+( 
     scoreTime DATETIME NOT NULL, 
     result ENUM('win', 'lose', 'incomplete'),
+    score INTEGER NOT NULL,
     livesUsed INTEGER NOT NULL,
     registrationOrder INTEGER, 
     FOREIGN KEY (registrationOrder) REFERENCES player(registrationOrder)

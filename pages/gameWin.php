@@ -30,15 +30,18 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO score (username, score) VALUES ('$username', $scoreCounter)";
+    // Get registrationOrder based on username
+    $sql = "SELECT registrationOrder FROM player WHERE userName = '$username'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $registrationOrder = $row['registrationOrder'];
+
+    $sql = "INSERT INTO score (scoreTime, result, score, livesUsed, registrationOrder) VALUES (now(), 'win', $scoreCounter, $livesCounter, $registrationOrder)";
     if ($conn->query($sql) === TRUE) 
     {
         echo "<h1 class=\"rainbow\">You Win!</h1>" . "<br>";
         echo "<p>Your score was: $scoreCounter</p>" . "<br>";
         echo "<p>You had $livesCounter lives remaining.</p>" . "<br>";
-        $_SESSION["livesCounter"] = 6;
-        $_SESSION["scoreCounter"] = 0;
-        session_destroy();
         echo "<br>";
         echo "<button onclick=\"window.location.href = 'index.php';\">Quit</button>";
     } 
@@ -47,6 +50,14 @@
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
     $conn->close();
+    unset($_SESSION["scoreCounter"]);
+    unset($_SESSION["livesCounter"]);
+    unset($_SESSION["letters"]);
+    unset($_SESSION["letters_q2"]);
+    unset($_SESSION["nums_q3"]);
+    unset($_SESSION["nums_q4"]);
+    unset($_SESSION["letters_q5"]);
+    unset($_SESSION["nums_q6"]);
     ?>
 </body>
 </html>
