@@ -13,15 +13,40 @@
     session_start();
     $scoreCounter = $_SESSION["scoreCounter"];
     $livesCounter = $_SESSION["livesCounter"];
+    $username = $_SESSION["username"];
 
-    echo "<h1 class=\"rainbow\">You Win!</h1>" . "<br>";
-    echo "<p>Your score was: $scoreCounter</p>" . "<br>";
-    echo "<p>You had $livesCounter lives remaining.</p>" . "<br>";
-    $_SESSION["livesCounter"] = 6;
-    $_SESSION["scoreCounter"] = 0;
-    session_destroy();
-    echo "<br>";
-    echo "<button onclick=\"window.location.href = 'index.php';\">Quit</button>";
+    // Database connection
+    $servername = "localhost";
+    $usernameDB = "root";
+    $passwordDB = "";
+    $dbname = "fentgames";
+
+    // Create connection
+    $conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) 
+    {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "INSERT INTO score (username, score) VALUES ('$username', $scoreCounter)";
+    if ($conn->query($sql) === TRUE) 
+    {
+        echo "<h1 class=\"rainbow\">You Win!</h1>" . "<br>";
+        echo "<p>Your score was: $scoreCounter</p>" . "<br>";
+        echo "<p>You had $livesCounter lives remaining.</p>" . "<br>";
+        $_SESSION["livesCounter"] = 6;
+        $_SESSION["scoreCounter"] = 0;
+        session_destroy();
+        echo "<br>";
+        echo "<button onclick=\"window.location.href = 'index.php';\">Quit</button>";
+    } 
+    else 
+    {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $conn->close();
     ?>
 </body>
 </html>
