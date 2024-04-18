@@ -20,13 +20,10 @@ body
 
 .signUpBox
 {
-    width: 400px;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.8);
-    background: #fff;
-    padding: 20 px;
-    margin: 8% auto 0;
-    text-align: center;
-    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 input[type="text"]
