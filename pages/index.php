@@ -10,23 +10,8 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    if (isset($_SESSION["username"])) {
-        include('../includes/signedinheader.php');
-    } else {
-        include('../includes/header.php');
-        echo "<script>
-        window.onload = function() {
-            var playButton = document.getElementById('playBtn');
-            playButton.style.backgroundColor = \"grey\";
-            playButton.onclick = function() 
-            {
-                alert('You must be signed in to play!');
-            }
-        }
-        </script>";
-    }
+    <?php 
+    include('../includes/header.php');
     ?>
     <div class="container">
         <div class="char section">
@@ -45,16 +30,13 @@
             <h2 class="subtitle"> the best games</h2>
             <br><br><br>
 
-            <button id="playBtn" class="playBtn" onclick="playGame();">Play Now</button>
+            <button id="playBtn" class="playBtn" onclick="openLoginPage()">Play Now</button>
             <script>
-                function playGame() {
-                    var playButton = document.getElementById("playBtn");
-                    if (!playButton.disabled) 
-                    {
-                        window.location.href = 'question1.php';
-                    }
+                function openLoginPage() {
+                window.location = 'loginPage.php';
                 }
             </script>
+            
             <br><br><br>
             <h2 class="subtitle">Unleash</h2>
             <h2 class="subtitle">Your Potential</h2>

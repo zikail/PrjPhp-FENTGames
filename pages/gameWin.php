@@ -21,7 +21,7 @@
     $_SESSION["scoreCounter"] = 0;
     session_destroy();
     echo "<br>";
-    echo "<button onclick=\"window.location.href = 'index.php';\">Quit</button>";
+    echo "<button onclick=\"window.location.href = 'userDashboard.php';\">Quit</button>";
     ?>
 </body>
 </html>

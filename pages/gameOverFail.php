@@ -18,7 +18,7 @@
     $_SESSION["scoreCounter"] = 0;
     echo "<br>";
     echo "<button onclick=\"window.location.href = 'question1.php';\">Try again</button>&nbsp&nbsp";
-    echo "<button onclick=\"window.location.href = 'index.php';\">Quit</button>";
+    echo "<button onclick=\"window.location.href = 'userDashboard.php';\">Quit</button>";
     ?>
 </body>
 </html>

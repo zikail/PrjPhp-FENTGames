@@ -71,7 +71,7 @@ by Leonardo Dueñas-->
                     // Start session and redirect to dashboard or home page
                     session_start();
                     $_SESSION['username'] = $username;
-                    header("Location: index.php");
+                    header("Location: userDashboard.php");
                     exit();
                 } 
                 else 
@@ -83,4 +83,5 @@ by Leonardo Dueñas-->
             }
     ?>
     </body>
+    
 </html>
