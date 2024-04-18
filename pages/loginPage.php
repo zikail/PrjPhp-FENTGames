@@ -31,7 +31,7 @@ by Leonardo Dueñas-->
 
                     <a href="SignUpPage.php"><button type="button">Sign Up</button></a>
 
-                    <a href="*">Don't remember your password?</a>
+                    <a href="modifyPassword.php">Don't remember your password?</a>
                     </div>
                 </form>
             </div>
