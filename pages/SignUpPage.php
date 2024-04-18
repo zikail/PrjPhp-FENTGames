@@ -11,7 +11,7 @@
         <script>
             function passwordStrength(str) {
                 let span = document.getElementById("passwordSuggestion");
-                let submit = document.getElementById("sub");
+                
 
                 if (str.length == 0) {
                     span.innerHTML = "";
@@ -31,23 +31,70 @@
                             */
                             switch(this.responseText){
                                 case 'Strong password':
-                                    submit.disabled = false;
+                                    //submit.disabled = false;
                                     span.style.color = 'green';
                                     break;
                                 case 'Intermidiate password':
-                                    submit.disabled = true;
+                                    //submit.disabled = true;
                                     span.style.color = 'orange';
                                     break;    
                                 case 'Weak password, comply the conditions':
-                                    submit.disabled = true;
+                                    //submit.disabled = true;
                                     span.style.color = 'red';
                                     break;    
                             }
+
+                            EnableSubmitButton();
 
                         }
                     };
                     xmlhttp.open("GET", "passwordAJAX.php?q=" + str, true);
                     xmlhttp.send();
+                }
+            }
+
+            function confirmationPasswordCheck(str) {
+                let span = document.getElementById("notIdenticalPasswordAlert");
+                
+                let password = document.querySelector("#passwordInput").value;
+
+                
+                if (str.length == 0) {
+                    span.innerHTML = "";
+                    return;
+                } else {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {                      
+                           if(str === password){
+                                span.innerHTML = "";    
+                            } 
+                            else {
+                                
+                                span.innerHTML = "Password do not coincide";
+                            }
+
+                            EnableSubmitButton();
+
+                        }
+                    };
+                    xmlhttp.open("GET", "confirmationAJAX.php?q=" + str, true);
+                    xmlhttp.send();
+                }
+
+            }
+
+            function EnableSubmitButton(){
+                let span1 = document.getElementById("passwordSuggestion");
+                let span2 = document.getElementById("notIdenticalPasswordAlert");
+                let submit = document.getElementById("sub");
+
+                if(span1.innerHTML === "Strong password" && span2.innerHTML === ""){
+                    submit.disabled = false;
+                } 
+                else
+                {
+                    submit.disabled = true;
                 }
             }
         </script>
@@ -59,13 +106,29 @@
                 <h1>Sign Up</h1>
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     </br>
+                    <label for="fname">Enter first name: </label>
+                    <input type="text" required name="fnameInput">
+
+                    <br><br>
+
+                    <label for="lname">Enter last name: </label>
+                    <input type="text" required name="lnameInput">
+
+                    <br><br>
+
                     <label for="uname">Enter username: </label>
                     <input type="text" required name="usernameInput">
 
                     <br><br>
 
                     <label for="pword">Enter password: </label>
-                    <input type="text" required name="passwordInput" onkeyup="passwordStrength(this.value)">
+                    <input type="text" id="passwordInput" required name="passwordInput" onkeyup="passwordStrength(this.value)">
+
+                    <br><br>
+
+                    <label for="cpword">Confirm password: </label>
+                    <input type="text" required name="confirmationPasswordInput" onkeyup="confirmationPasswordCheck(this.value)">
+                    <p><span id="notIdenticalPasswordAlert"></span></p>
 
                     <br><br>
 
@@ -111,6 +174,9 @@
             // Get username and password from form
             $username = $_POST['usernameInput'];
             $password = $_POST['passwordInput'];
+            //$confirmationPassword = $_POST['confirmationPasswordInput'];
+            $firstName = $_POST['fnameInput'];
+            $lastName = $_POST['lnameInput'];
 
             // SQL query to check if username already exists
             $sql = "SELECT * FROM player WHERE userName = '$username'";
@@ -125,7 +191,7 @@
             {
                 // SQL query to insert new user into the player table
                 $sql = "INSERT INTO player (fName, lName, userName, registrationTime) 
-                VALUES ('', '', '$username', NOW())";
+                VALUES ('$firstName', '$lastName', '$username', NOW())";
 
                 if ($conn->query($sql) === TRUE) 
                 {
