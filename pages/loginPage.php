@@ -33,12 +33,14 @@ by Leonardo Dueñas-->
 
                     <a href="modifyPassword.php">Don't remember your password?</a>
                     </div>
+                    <br><br>
+                    <div class="back-button">
+                    <a href="index.php"><button type="button">Go Back</button></a>
+            </div>
                 </form>
             </div>
 
-            <div class="back-button">
-                    <a href="index.php"><button type="button">Go Back</button></a>
-            </div>
+            
         </div>
 
         <?php
