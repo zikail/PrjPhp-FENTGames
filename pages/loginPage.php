@@ -31,7 +31,7 @@ by Leonardo Dueñas-->
 
                     <a href="SignUpPage.php"><button type="button">Sign Up</button></a>
 
-                    <a href="*">Don't remember your password?</a>
+                    <a href="modifyPassword.php">Don't remember your password?</a>
                     </div>
                 </form>
             </div>
@@ -71,7 +71,7 @@ by Leonardo Dueñas-->
                     // Start session and redirect to dashboard or home page
                     session_start();
                     $_SESSION['username'] = $username;
-                    header("Location: index.php");
+                    header("Location: userDashboard.php");
                     exit();
                 } 
                 else 
@@ -83,4 +83,5 @@ by Leonardo Dueñas-->
             }
     ?>
     </body>
+    
 </html>

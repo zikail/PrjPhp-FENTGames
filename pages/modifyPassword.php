@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../assets/css/signup.css">
         <link rel="icon" type="image/png" href="../assets/images/logo.png">
-        <title>Sign Up</title>
+        <title>Change password</title>
 
 
         <script>
@@ -21,14 +21,7 @@
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             span.innerHTML = this.responseText;
-                            /*
-                            if (this.responseText == "Strong password") {
-                                document.getElementById("sub").disabled = false;
-                                document.getElementById("passwordSuggestion").style.color = 'green';
-                            } else {
-                                document.getElementById("sub").disabled = true;
-                            }
-                            */
+                            
                             switch(this.responseText){
                                 case 'Strong password':
                                     //submit.disabled = false;
@@ -103,25 +96,16 @@
     <body>
         <div class="outer-container">
             <div class="signUpBox">
-                <h1>Sign Up</h1>
+                <h1>Modify Password</h1>
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     </br>
-                    <label for="fname">Enter first name: </label>
-                    <input type="text" required name="fnameInput">
-
-                    <br><br>
-
-                    <label for="lname">Enter last name: </label>
-                    <input type="text" required name="lnameInput">
-
-                    <br><br>
-
+                
                     <label for="uname">Enter username: </label>
                     <input type="text" required name="usernameInput">
 
                     <br><br>
 
-                    <label for="pword">Enter password: </label>
+                    <label for="pword">Enter new password: </label>
                     <input type="text" id="passwordInput" required name="passwordInput" onkeyup="passwordStrength(this.value)">
 
                     <br><br>
@@ -143,7 +127,7 @@
 
                     <br>
 
-                    <input id="sub" type="submit" name="signUpSumbit" value="SIGNUP" disabled>
+                    <input id="sub" type="submit" name="signUpSumbit" value="Change Password" disabled>
                     
                 </form>
             </div>
@@ -174,52 +158,27 @@
             // Get username and password from form
             $username = $_POST['usernameInput'];
             $password = $_POST['passwordInput'];
-            //$confirmationPassword = $_POST['confirmationPasswordInput'];
-            $firstName = $_POST['fnameInput'];
-            $lastName = $_POST['lnameInput'];
+            
 
-            // SQL query to check if username already exists
-            $sql = "SELECT * FROM player WHERE userName = '$username'";
-            $result = $conn->query($sql);
+            //modify the players password
+            $sql = "UPDATE authenticator SET passCode = '$password' WHERE registrationOrder = (
+                SELECT registrationOrder
+                FROM player
+                WHERE userName = '$username'
+                )";
 
-            if ($result->num_rows > 0) 
+            if($conn->query($sql) === TRUE)
             {
-                echo "<br>";
-                echo "<p style=\"text-align:center;\">Username already exists. Please try again with a different username.</p>" ;
+                // Start session and redirect to login
+                //session_start();
+                //$_SESSION['username'] = $username;
+                echo "New password changed succesfully!";
+                echo "<button onclick=\"window.location.href = 'loginPage.php';\">Go to login</button>";
+                //exit();
             }
             else 
             {
-                // SQL query to insert new user into the player table
-                $sql = "INSERT INTO player (fName, lName, userName, registrationTime) 
-                VALUES ('$firstName', '$lastName', '$username', NOW())";
-
-                if ($conn->query($sql) === TRUE) 
-                {
-                    // Get the registrationOrder of the newly inserted user
-                    $registrationOrder = $conn->insert_id;
-
-                    // SQL query to insert password into the authenticator table
-                    $sql = "INSERT INTO authenticator (passCode, registrationOrder) 
-                    VALUES ('$password', $registrationOrder)";
-
-                    if ($conn->query($sql) === TRUE) 
-                    {
-                        // Start session and redirect to dashboard or home page
-                        session_start();
-                        $_SESSION['username'] = $username;
-                        echo "New record created successfully";
-                        echo "<button onclick=\"window.location.href = 'index.php';\">Go to home page</button>";
-                        exit();
-                    } 
-                    else 
-                    {
-                        $error = "Error: " . $sql . "<br>" . $conn->error;
-                    }
-                } 
-                else 
-                {
-                    $error = "Error: " . $sql . "<br>" . $conn->error;
-                }
+                $error = "Error: " . $sql . "<br>" . $conn->error;
             }
 
             $conn->close();
