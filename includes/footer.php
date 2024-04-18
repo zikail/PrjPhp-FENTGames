@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/footer.css">
 </head>
+<style>
+.footer-bottom img 
+{
+    width: 16px;
+    height: 16px;
+}
+</style>
 <body>
 <footer>
         

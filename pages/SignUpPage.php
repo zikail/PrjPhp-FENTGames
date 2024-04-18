@@ -7,7 +7,10 @@
         <link rel="icon" type="image/png" href="../assets/images/logo.png">
         <title>Sign Up</title>
 
-
+        <?php
+        // Start session and redirect to dashboard or home page
+        session_start();
+        ?>
         <script>
             function passwordStrength(str) {
                 let span = document.getElementById("passwordSuggestion");
@@ -204,8 +207,6 @@
 
                     if ($conn->query($sql) === TRUE) 
                     {
-                        // Start session and redirect to dashboard or home page
-                        session_start();
                         $_SESSION['username'] = $username;
                         echo "New record created successfully";
                         echo "<button onclick=\"window.location.href = 'index.php';\">Go to home page</button>";

@@ -10,9 +10,12 @@
 <body>
 <?php
     session_start();
-    if (isset($_SESSION["username"])) {
+    if (isset($_SESSION["username"])) 
+    {
         include('../includes/signedinheader.php');
-    } else {
+    } 
+    else 
+    {
         include('../includes/header.php'); 
         echo "<script>
         window.onload = function() {
