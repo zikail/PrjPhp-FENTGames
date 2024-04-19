@@ -92,6 +92,9 @@
                 let span2 = document.getElementById("notIdenticalPasswordAlert");
                 let submit = document.getElementById("sub");
 
+                let firstName = document.querySelector('input[name="fnameInput"]').value;
+                let lastName = document.querySelector('input[name="lnameInput"]').value;
+
                 if(span1.innerHTML === "Strong password" && span2.innerHTML === ""){
                     submit.disabled = false;
                 } 
@@ -178,7 +181,9 @@
             // SQL query to check if username already exists
             $sql = "SELECT * FROM player WHERE userName = '$username'";
             $result = $conn->query($sql);
-
+            if (preg_match('/\d/', $firstName) || preg_match('/\d/', $lastName)) {
+                echo "<p style=\"text-align:center;\">First name and last name cannot contain numbers. Please try again.</p>";
+            } else {
             if ($result->num_rows > 0) 
             {
                 echo "<br>";
@@ -218,6 +223,7 @@
 
             $conn->close();
         }
+    }
         ?>
                 </form>
             </div>
