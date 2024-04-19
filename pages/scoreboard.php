@@ -58,7 +58,7 @@
             }
 
             // Query to retrieve player names and scores in descending order
-            $sql = "SELECT p.fName, p.lName, SUM(s.score) AS score
+            $sql = "SELECT p.fName, p.lName, MAX(s.score) AS score
                     FROM player p
                     JOIN score s ON p.registrationOrder = s.registrationOrder
                     GROUP BY p.registrationOrder

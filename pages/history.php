@@ -11,6 +11,7 @@
 
 <body>
 <?php
+    session_start();
     if (isset($_SESSION["username"])) 
     {
         include('../includes/signedinheader.php');
@@ -36,12 +37,12 @@
             <tr>
                 <th>Date</th>
                 <th>Result</th>
+                <th>Score</th>
                 <th>Lives Used</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            session_start();
             $username = $_SESSION["username"];
 
             // Database connection
@@ -66,7 +67,7 @@
             $registrationOrder = $row['registrationOrder'];
 
             // Query to retrieve the player's history
-            $sql = "SELECT s.scoreTime, s.result, s.livesUsed
+            $sql = "SELECT s.scoreTime, s.result, s.score,s.livesUsed
                     FROM score s
                     WHERE s.registrationOrder = $registrationOrder
                     ORDER BY s.scoreTime DESC";
@@ -81,6 +82,7 @@
                     echo "<tr>";
                     echo "<td>" . $row["scoreTime"] . "</td>";
                     echo "<td>" . $row["result"] . "</td>";
+                    echo "<td>" . $row["score"] . "</td>";
                     echo "<td>" . $row["livesUsed"] . "</td>";
                     echo "</tr>";
                 }

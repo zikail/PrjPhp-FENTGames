@@ -29,7 +29,7 @@
         } else {
             $scoreCounter = $_SESSION["scoreCounter"];
         }
-
+        $username = $_SESSION["username"];
         // Check if the user has submitted an answer and compares it to the correct answer
         if ($_SERVER["REQUEST_METHOD"] == "POST") 
         {
