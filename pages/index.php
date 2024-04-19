@@ -46,8 +46,9 @@
             <img src="../assets/images/char1.png" alt="games">
             <br>
         </div>
+    </div>
 
-        <?php include('../includes/footer.php'); ?>
+    <?php include('../includes/footer.php'); ?>
 
 
 </body>

@@ -128,13 +128,13 @@
                     <br>
 
                     <input id="sub" type="submit" name="signUpSumbit" value="Change Password" disabled>
-                    
+                    <div class="back-button">
+                        <a href="index.php"><button type="button">Go Back</button></a>
+                    </div>
                 </form>
             </div>
 
-            <div class="back-button">
-                <a href="index.php"><button type="button">Go Back</button></a>
-            </div>
+            
         </div>
 
         <?php

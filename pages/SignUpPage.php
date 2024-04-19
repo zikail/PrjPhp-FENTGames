@@ -150,13 +150,7 @@
                     <div class="back-button">
                 <a href="index.php"><button type="button">Go Back</button></a>
             </div>
-                </form>
-            </div>
-
-            
-        </div>
-
-        <?php
+            <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") 
         {
             // Database connection
@@ -209,7 +203,6 @@
                     {
                         $_SESSION['username'] = $username;
                         echo "New record created successfully";
-                        echo "<button onclick=\"window.location.href = 'index.php';\">Go to home page</button>";
                         exit();
                     } 
                     else 
@@ -226,5 +219,12 @@
             $conn->close();
         }
         ?>
+                </form>
+            </div>
+            
+            
+        </div>
+
+        
     </body>
 </html>

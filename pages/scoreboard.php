@@ -10,8 +10,29 @@
 </head>
 
 <body>
-    <h1>Scoreboard</h1>
-
+<?php
+    session_start();
+    if (isset($_SESSION["username"])) 
+    {
+        include('../includes/signedinheader.php');
+    } 
+    else 
+    {
+        include('../includes/header.php'); 
+        echo "<script>
+        window.onload = function() {
+            var playButton = document.getElementById('playBtn');
+            playButton.style.backgroundColor = \"grey\";
+            playButton.onclick = function() 
+            { 
+            }
+        }
+        </script>";          
+    }
+    ?>
+<div class="intro">
+    
+<h1 class="title">Scoreboard</h1>
     <table>
         <thead>
             <tr>
@@ -65,6 +86,7 @@
             ?>
         </tbody>
     </table>
+</div>
 </body>
 
 </html>

@@ -10,8 +10,27 @@
 </head>
 
 <body>
-    <h1>Player History</h1>
-
+<?php
+    if (isset($_SESSION["username"])) 
+    {
+        include('../includes/signedinheader.php');
+    } 
+    else 
+    {
+        include('../includes/header.php'); 
+        echo "<script>
+        window.onload = function() {
+            var playButton = document.getElementById('playBtn');
+            playButton.style.backgroundColor = \"grey\";
+            playButton.onclick = function() 
+            { 
+            }
+        }
+        </script>";          
+    }
+    ?>
+    <div class="intro">
+    <h1 class="title">Player History</h1>
     <table>
         <thead>
             <tr>
@@ -75,6 +94,7 @@
             ?>
         </tbody>
     </table>
+    </div>
 </body>
 
 </html>

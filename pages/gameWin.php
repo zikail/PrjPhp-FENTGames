@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/question.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/win.css">
     <link rel="icon" type="image/png" href="../assets/images/logo.png">
     <title>You Win!</title>
 </head>
 <body>
-    <?php
+<div class="container">
+        <div class="char section">
+            <br>
+            <img src="../assets/images/charWin1.png" alt="games">
+            <br>
+        </div>
+        <div class="intro section" style="margin-top: 40px;">
+        <?php
     session_start();
     $scoreCounter = $_SESSION["scoreCounter"];
     $livesCounter = $_SESSION["livesCounter"];
@@ -40,10 +47,10 @@
     if ($conn->query($sql) === TRUE) 
     {
         echo "<h1 class=\"rainbow\">You Win!</h1>" . "<br>";
-        echo "<p>Your score was: $scoreCounter</p>" . "<br>";
-        echo "<p>You had $livesCounter lives remaining.</p>" . "<br>";
+        echo "<h1>Your score was: $scoreCounter</h1>" . "<br>";
+        echo "<h1>You had $livesCounter lives remaining.</h1>" . "<br>";
         echo "<br>";
-        echo "<button onclick=\"window.location.href = 'index.php';\">Quit</button>";
+        echo "<button class=\"btnQu\" onclick=\"window.location.href = 'index.php';\">Quit</button>";
     } 
     else 
     {
@@ -59,5 +66,14 @@
     unset($_SESSION["letters_q5"]);
     unset($_SESSION["nums_q6"]);
     ?>
+            
+        </div>
+        <div class="char section">
+            <br>
+            <img src="../assets/images/charWin2.png" alt="games">
+            <br>
+        </div>
+    </div>
+    
 </body>
 </html>
