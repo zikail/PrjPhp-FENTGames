@@ -36,11 +36,12 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            // Query to retrieve player names and scores in ascending order
-            $sql = "SELECT p.fName, p.lName, s.score
+            // Query to retrieve player names and scores in descending order
+            $sql = "SELECT p.fName, p.lName, SUM(s.score) AS score
                     FROM player p
                     JOIN score s ON p.registrationOrder = s.registrationOrder
-                    ORDER BY s.score ASC";
+                    GROUP BY p.registrationOrder
+                    ORDER BY score DESC";
 
             $result = $conn->query($sql);
 

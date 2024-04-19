@@ -56,11 +56,11 @@ INSERT INTO authenticator(passCode, registrationOrder)
 VALUES('$2y$10$FRAyAIK6.TYEEmbOHF4JfeiBCdWFHcqRTILM7nF/7CPjE3dNEWj3W', 3);
 
 -- 4.3.Table score
-INSERT INTO score(scoreTime, result , livesUsed, registrationOrder)
-VALUES(now(), 'win', 4, 1);
+INSERT INTO score(scoreTime, result, score, livesUsed, registrationOrder)
+VALUES(now(), 'win', 50, 4, 1);
 
-INSERT INTO score(scoreTime, result , livesUsed, registrationOrder)
-VALUES(now(), 'lose', 6, 2);
+INSERT INTO score(scoreTime, result, score, livesUsed, registrationOrder)
+VALUES(now(), 'lose', 6, 0, 2);
 
-INSERT INTO score(scoreTime, result , livesUsed, registrationOrder)
-VALUES(now(), 'incomplete', 5, 3);
+INSERT INTO score(scoreTime, result, score, livesUsed, registrationOrder)
+VALUES(now(), 'incomplete', 30, 5, 3);
