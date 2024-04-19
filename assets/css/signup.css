@@ -1,79 +1,121 @@
+/* Reset default margin, padding, and box-sizing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
-    color: #153d87;
 }
 
-body 
-{
+/* Body styling */
+body {
+    display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     min-height: 100vh;
     background: url('../images/background1.jpg') no-repeat;
     background-size: cover;
     background-position: center;
-    
+    font-family: Arial, sans-serif;
+    color: #333;
 }
 
-
-.signUpBox
-{
+/* Outer container styling */
+.outer-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
-input[type="text"]
-{
-    background-color: rgb(244, 240, 255);
+/* Sign-up box styling */
+.signUpBox {
+    background: rgba(237, 231, 231, 0.5);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
 }
 
-input[type="text"]:hover 
-{
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.signUpBox h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-input[type=text]:focus 
-{
-    border: 3px solid #555;
-    background-color: #fff;
-}
-
-.passConditions
-{
-    width: 50%;
-    margin: 0 auto;
-    text-align: left;
-}
-
-#passwordSuggestion
-{
-    margin: 20px;
-}
-
-#sub
-{
-    margin: 15px;
-    padding: 5px;
-    border-radius: 10%;
-}
-
-#sub:hover
-{
-    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-}
-
-.outer-container
-{
+/* Form styling */
+form {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-.back-button
-{
+label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.passConditions {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+/* Password strength suggestion styling */
+#passwordSuggestion {
+    font-weight: bold;
+}
+
+#passwordSuggestion.green {
+    color: green;
+}
+
+#passwordSuggestion.orange {
+    color: orange;
+}
+
+#passwordSuggestion.red {
+    color: red;
+}
+
+/* Submit button styling */
+#sub {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+}
+
+#sub:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Back button styling */
+.back-button {
     margin-top: 20px;
+}
+
+.back-button button[type="button"] {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 16px;
+}
+
+.back-button button[type="button"]:hover {
+    background-color: #c82333;
 }
