@@ -37,13 +37,7 @@ by Leonardo Dueñas-->
                     <div class="back-button">
                     <a href="index.php"><button type="button">Go Back</button></a>
             </div>
-                </form>
-            </div>
-
-            
-        </div>
-
-        <?php
+            <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") 
             {
                 // Database connection
@@ -82,8 +76,13 @@ by Leonardo Dueñas-->
                 }
 
                 $conn->close();
-            }
-    ?>
+            } ?>
+                </form>
+            </div>
+
+            
+        </div>
+
     </body>
     
 </html>
